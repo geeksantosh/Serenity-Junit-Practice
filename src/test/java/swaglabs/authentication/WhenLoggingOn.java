@@ -30,8 +30,6 @@ public class WhenLoggingOn {
 //        login.as(User.PROBLEM_USER);
 //        login.as(User.PERFORMANCE_GLITCH_USER);
 
-
-
 //      Should see product catalog
         Serenity.reportThat("The inventory should be displayed with the correct title",
                 () -> assertThat(inventoryPage.getHeading()).isEqualToIgnoringCase("Products")
