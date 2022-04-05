@@ -23,3 +23,4 @@ For gradle, pen a command window and run:
 ## Viewing the reports
 
 Both of the commands provided above will produce a Serenity test report in the `target/site/serenity` directory. Go take a look!
+ mvn serenity:aggregate
