@@ -1,7 +1,8 @@
-package swaglabs.authentication.actions;
+package swaglabs.authentication;
 
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Step;
+import swaglabs.authentication.LoginForm;
 import swaglabs.authentication.User;
 
 public class LoginActions extends UIInteractionSteps {
@@ -10,9 +11,8 @@ public class LoginActions extends UIInteractionSteps {
         openUrl("https://www.saucedemo.com/");
 
         //Login as a Standard user
-        $("#user-name").sendKeys(user.getUsername());
-        $("#password").sendKeys(user.getPassword());
-        $("#login-button").click();
-
+        $(LoginForm.USER_NAME).sendKeys(user.getUsername());
+        $(LoginForm.PASSWORD).sendKeys(user.getPassword());
+        $(LoginForm.LOGIN_BUTTON).click();
     }
 }

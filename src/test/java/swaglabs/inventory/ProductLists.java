@@ -5,16 +5,17 @@ import org.openqa.selenium.By;
 
 import java.util.List;
 
-public class ProductListsPageObject extends PageObject {
-    public List<String> titles() {
-        return findAll(".inventory_item_name").textContents();
-    }
+public class ProductLists extends PageObject {
 
-    public void openProductDetailsFor(String itemName) {
-        find(By.linkText(itemName)).click();
+    public static By productDetailsLinkFor(String itemName) {
+        return By.linkText((itemName));
     }
 
     public String imageTextForProduct(String productName) {
         return $("//div[@class='inventory_item'][contains(.,'"+ productName +"')]//img").getAttribute("alt");
+    }
+
+    public List<String> titles() {
+        return findAll(".inventory_item_name").textContents();
     }
 }

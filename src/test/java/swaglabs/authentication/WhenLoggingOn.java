@@ -7,7 +7,6 @@ import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import swaglabs.authentication.actions.LoginActions;
 import swaglabs.inventory.InventoryPage;
 
 import static org.assertj.core.api.Assertions.assertThat;

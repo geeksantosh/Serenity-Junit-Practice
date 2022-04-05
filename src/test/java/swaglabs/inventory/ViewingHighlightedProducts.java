@@ -1,5 +1,6 @@
 package swaglabs.inventory;
 
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
@@ -7,8 +8,8 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+import swaglabs.authentication.LoginActions;
 import swaglabs.authentication.User;
-import swaglabs.authentication.actions.LoginActions;
 
 import java.util.List;
 
@@ -23,9 +24,12 @@ public class ViewingHighlightedProducts {
     @Steps
     LoginActions login;
 
-    ProductListsPageObject productList;
+    @Steps
+    ViewProductDetailsActions viewProductDetails;
 
-    ProductDetailsPageObject productDetails;
+    ProductLists productList;
+
+    ProductDetails productDetails;
 
     @Test
     public void shouldDisplayHighlightedItemsOnWelcomePage() {
@@ -38,7 +42,7 @@ public class ViewingHighlightedProducts {
     }
 
     @Test
-    public void highlightedProductsShouldDisplayCorrespondingImages(){
+    public void highlightedProductsShouldDisplayCorrespondingImages() {
         login.as(User.STANDARD_USER);
         List<String> productsOnDisplay = productList.titles();
 
@@ -56,11 +60,16 @@ public class ViewingHighlightedProducts {
 
         String firstItemName = productList.titles().get(0);
 
-        productList.openProductDetailsFor(firstItemName);
+        //productList.openProductDetailsFor(firstItemName);
+        viewProductDetails.forProductWithName(firstItemName);
 
+        Serenity.reportThat("The product name should be correctly displayed",
+                () -> assertThat(productDetails.productName()).isEqualTo(firstItemName)
+        );
         assertThat(productDetails.productName()).isEqualTo(firstItemName);
         //Validating Img and alt value
-        productDetails.productImageWithAltValueOf(firstItemName).shouldBeVisible();
-
+        Serenity.reportThat("Product Image should have the correct alt text",
+                () -> productDetails.productImageWithAltValueOf(firstItemName).shouldBeVisible()
+        );
     }
 }
