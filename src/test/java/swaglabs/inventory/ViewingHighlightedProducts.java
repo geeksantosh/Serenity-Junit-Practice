@@ -50,8 +50,6 @@ public class ViewingHighlightedProducts {
         productsOnDisplay.forEach(
                 productName -> softAssertions.assertThat(productList.imageTextForProduct(productName)).isEqualTo(productName)
         );
-
-
     }
 
     @Test
@@ -60,7 +58,6 @@ public class ViewingHighlightedProducts {
 
         String firstItemName = productList.titles().get(0);
 
-        //productList.openProductDetailsFor(firstItemName);
         viewProductDetails.forProductWithName(firstItemName);
 
         Serenity.reportThat("The product name should be correctly displayed",
